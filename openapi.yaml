@@ -1,0 +1,37 @@
+
+openapi: 3.0.0
+info:
+  title: Tobyoki Retrieval API
+  version: 1.0.0
+paths:
+  /search:
+    get:
+      summary: 闘病記から関連する記録を検索します
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: 検索するキーワード（例：「抗がん剤」「不安」など）
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 検索結果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        title:
+                          type: string
+                        text:
+                          type: string
